@@ -5,6 +5,6 @@ app = FastAPI()
 
 @app.get("/api/v1/hello")
 async def hello():
-    return {"message": "Hello, World!"}
+    return {"message": "hello, Hello...HELLO from Docker Compose!"}
 
 app.mount("/", StaticFiles(directory="../ui/dist", html=True), name="ui")
