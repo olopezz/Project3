@@ -1,19 +1,35 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import "./styles.css";
 
-const App = () => {
+function FilmEntry({ id, title, description }) {
   return (
-    <div>
-      <h1>Welcome to React with Docker!</h1>
-      <p>
-        This is a simple React application running inside a Docker container.
-      </p>
-      <button onClick={() => alert("You clicked the button!")}>
-        Click Me!
-      </button>
-    </div>
+    <p>
+      <a href={`/film/${id}`}>{title}</a>: {description}
+    </p>
   );
-};
+}
 
-ReactDOM.render(<App />, document.getElementById("root"));
+async function main() {
+  const filmsResponse = await fetch("/api/v1/films");
+  const films = await filmsResponse.json();
+
+  const rootElt = document.getElementById("app");
+  const root = createRoot(rootElt);
+
+  root.render(
+    <ul>
+      {films.map((film) => (
+        <li key={film.id}>
+          <FilmEntry
+            id={film.id}
+            title={film.title}
+            description={film.description}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+main();
