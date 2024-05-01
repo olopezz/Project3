@@ -48,10 +48,10 @@ function CreateFilmForm() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Create Film</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label htmlFor="title">Title:</label>
           <input
             type="text"
@@ -61,7 +61,99 @@ function CreateFilmForm() {
             required
           />
         </div>
-        <button type="submit">Create</button>
+        <div className="form-group">
+          <label htmlFor="description">Description:</label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          ></textarea>
+        </div>
+        <div className="form-group">
+          <label htmlFor="releaseYear">Release Year:</label>
+          <input
+            type="number"
+            id="releaseYear"
+            value={releaseYear}
+            onChange={(e) => setReleaseYear(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="languageId">Language ID:</label>
+          <input
+            type="number"
+            id="languageId"
+            value={languageId}
+            onChange={(e) => setLanguageId(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="rentalDuration">Rental Duration:</label>
+          <input
+            type="number"
+            id="rentalDuration"
+            value={rentalDuration}
+            onChange={(e) => setRentalDuration(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="rentalRate">Rental Rate:</label>
+          <input
+            type="number"
+            id="rentalRate"
+            step="0.01"
+            value={rentalRate}
+            onChange={(e) => setRentalRate(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="length">Length:</label>
+          <input
+            type="number"
+            id="length"
+            value={length}
+            onChange={(e) => setLength(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="replacementCost">Replacement Cost:</label>
+          <input
+            type="number"
+            id="replacementCost"
+            step="0.01"
+            value={replacementCost}
+            onChange={(e) => setReplacementCost(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="rating">Rating:</label>
+          <input
+            type="text"
+            id="rating"
+            value={rating}
+            onChange={(e) => setRating(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="specialFeatures">Special Features:</label>
+          <input
+            type="text"
+            id="specialFeatures"
+            value={specialFeatures}
+            onChange={(e) => setSpecialFeatures(e.target.value.split(","))}
+          />
+        </div>
+        <button type="submit" className="action-button">
+          Create
+        </button>
       </form>
     </div>
   );
