@@ -29,6 +29,22 @@ function FilmView() {
     fetchFilm();
   }, []);
 
+  const handleDelete = async () => {
+    const filmId = window.location.pathname.split("/")[2];
+    try {
+      const response = await fetch(`/api/v1/film/${filmId}`, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        window.location.href = "/"; // Redirect to the film list page
+      } else {
+        throw new Error("Failed to delete film");
+      }
+    } catch (error) {
+      console.error("Error deleting film:", error);
+    }
+  };
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -77,7 +93,17 @@ function FilmView() {
       <p>
         <strong>Fulltext:</strong> {film.fulltext}
       </p>
-      <a href="/">Back to Film List</a>
+      <div className="button-group">
+        <button onClick={handleDelete} className="action-button">
+          Delete Film
+        </button>
+        <button
+          onClick={() => (window.location.href = "/")}
+          className="action-button"
+        >
+          Back to Film List
+        </button>
+      </div>
     </div>
   );
 }
