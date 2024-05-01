@@ -84,7 +84,7 @@ async def film_details(id: int):
         else:
             raise HTTPException(status_code=404, detail="Film not found")
 
-@app.get("/film/{id}", response_class=HTMLResponse)
+@app.get("/film/{id:int}", response_class=HTMLResponse)
 async def film(id: int):
     with open("../ui/dist/film.html") as file:
         return file.read()
